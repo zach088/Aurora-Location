@@ -17,32 +17,7 @@
 
 /* Begin PBXBuildFile section */
 		B00000000000000000000005 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000002 /* PacketTunnelProvider.swift */; };
-		B00000000000000000000006 /* LocalTunnel.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B00000000000000000000001 /* LocalTunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		B00000000000000000000007 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A00000000000000000000001 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B00000000000000000000008;
-			remoteInfo = LocalTunnel;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		B00000000000000000000009 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				B00000000000000000000006 /* LocalTunnel.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
 		A00000000000000000000016 /* Exceptions for "AuroraLocation" folder in "AuroraLocation" target */ = {
@@ -123,12 +98,10 @@
 				A00000000000000000000007 /* Sources */,
 				A00000000000000000000008 /* Frameworks */,
 				A00000000000000000000009 /* Resources */,
-				B00000000000000000000009 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B00000000000000000000012 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A00000000000000000000005 /* AuroraLocation */,
@@ -228,14 +201,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B00000000000000000000012 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B00000000000000000000008 /* LocalTunnel */;
-			targetProxy = B00000000000000000000007 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A00000000000000000000012 /* Debug */ = {
