@@ -6,17 +6,22 @@ enum LocalDeviceTunnel {
     private static let providerBundleIdentifier = (Bundle.main.bundleIdentifier ?? "") + ".LocalTunnel"
     private static let profileDescription = "Aurora Location Local Device Tunnel"
     private static let statusTimeout = Duration.seconds(10)
+    // Free-lite (免费签名) fork: the NetworkExtension entitlement is never granted, so every
+    // NETunnelProviderManager read/write fails with NEConfigurationErrorDomain Code=10.
+    // Treat the app-owned tunnel as a feature this build does not have.
+    private static let isTunnelUnsupported = true
     private static var manager: NETunnelProviderManager?
     private(set) static var lastFailureDetails = ""
 
     static var isConnected: Bool {
-        guard let manager else { return false }
+        guard !isTunnelUnsupported, let manager else { return false }
         return manager.connection.status == .connected
     }
 
     static func start() async throws {
         lastFailureDetails = ""
         do {
+            guard !isTunnelUnsupported else { throw LocalDeviceTunnelError.unavailable }
             try await startConfiguredTunnel()
         } catch {
             lastFailureDetails = (error as? LocalDeviceTunnelError ?? systemError(error, stage: "configuration")).localizedDescription
@@ -57,6 +62,10 @@ enum LocalDeviceTunnel {
     }
 
     static func stop() async -> Bool {
+        if isTunnelUnsupported {
+            self.manager = nil
+            return true
+        }
         let manager: NETunnelProviderManager
         do {
             manager = try await loadOwnedManager(createIfMissing: false)
